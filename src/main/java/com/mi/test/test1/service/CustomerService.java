@@ -19,7 +19,6 @@ public class CustomerService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(CustomerService.class);
 
-
     /**
      * 获取客户列表
      * @param keyword
@@ -29,37 +28,6 @@ public class CustomerService {
         String sql = "SELECT * FROM customer";
         return DatabaseHelper.queryEntityList(Customer.class,sql);
     }
-
-//    /**
-//     * 获取客户列表
-//     * @param keyword
-//     * @return
-//     */
-//    public List<Customer> getCustomerList(String keyword) {
-//        Connection conn = null;
-//        List<Customer> customerList = new ArrayList<Customer>();
-//        try{
-//            String sql = "SELECT * FROM customer";
-//            conn = DatabaseHelper.getConnection();
-//            PreparedStatement stmt = conn.prepareStatement(sql);
-//            ResultSet rs = stmt.executeQuery();
-//            while(rs.next()){
-//                Customer customer = new Customer();
-//                customer.setId(rs.getLong("id"));
-//                customer.setName(rs.getString("name"));
-//                customer.setContact(rs.getString("contact"));
-//                customer.setTelephone(rs.getString("telephone"));
-//                customer.setEmail(rs.getString("email"));
-//                customer.setRemark(rs.getString("remark"));
-//                customerList.add(customer);
-//            }
-//        } catch (SQLException e) {
-//            LOGGER.error("execute sql failure",e);
-//        }finally {
-//            DatabaseHelper.closeConnection(conn);
-//        }
-//        return customerList;
-//    }
 
     /**
      * 获取客户

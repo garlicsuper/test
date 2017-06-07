@@ -1,10 +1,15 @@
 package com.mi.test.test1.service;
 
+import com.mi.test.test1.helper.DatabaseHelper;
 import com.mi.test.test1.model.Customer;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -22,14 +27,14 @@ public class CustomerServiceTest {
     }
 
     @Before
-    public void init() {
-        //初始数据库
+    public void init() throws Exception{
+        //初始测试数据库
+        DatabaseHelper.executeSqlFile("sql/customer_init.sql");
     }
 
     @Test
     public void getCustomerListTest() throws Exception {
         List<Customer> customerList = customerService.getCustomerList(null);
-        //System.out.println(customerList);
         Assert.assertEquals(2, customerList.size());
     }
 
