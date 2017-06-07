@@ -5,14 +5,22 @@ import org.apache.http.NameValuePair;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpPost;
+import org.apache.http.conn.ssl.SSLSocketFactory;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
 import org.junit.Test;
 
+import javax.net.ssl.SSLContext;
+import javax.net.ssl.TrustManager;
+import javax.net.ssl.X509TrustManager;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.security.KeyManagementException;
+import java.security.NoSuchAlgorithmException;
+import java.security.SecureRandom;
+import java.security.cert.X509Certificate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,10 +32,10 @@ public class DemoServletTest {
     @Test
     public void postTest() throws IOException {
         CloseableHttpClient client = HttpClients.createDefault();
-        HttpPost httpPost = new HttpPost("http://localhost:8080/test1/demo");
-        List<NameValuePair> params = new ArrayList<NameValuePair>();
-        params.add(new BasicNameValuePair("id", "10001"));
-        httpPost.setEntity(new UrlEncodedFormEntity(params));
+        HttpPost httpPost = new HttpPost("http://localhost:8080/test1/demo?id=2");
+//        List<NameValuePair> params = new ArrayList<NameValuePair>();
+//        params.add(new BasicNameValuePair("id", "10001"));
+//        httpPost.setEntity(new UrlEncodedFormEntity(params));
         CloseableHttpResponse response = client.execute(httpPost);
         String respContent = null;
         if(response.getStatusLine().getStatusCode() == 200) {
@@ -36,4 +44,10 @@ public class DemoServletTest {
         }
         System.out.println("respContent:"+respContent);
     }
+
+
+
+
+
+
 }
